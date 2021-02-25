@@ -39,6 +39,7 @@ import com.google.cloud.vision.v1.OperationMetadata;
 import com.google.cloud.vision.v1.OutputConfig;
 import com.google.common.collect.Lists;
 import com.google.protobuf.util.JsonFormat;
+import com.text.textDetector.model.InputRequest;
 
 @RestController
 public class ApiController {
@@ -46,9 +47,9 @@ public class ApiController {
 	
 
 	@RequestMapping(value = "/fetchTextFromFile", method = { RequestMethod.POST })
-	public String detectDocumentTextGcs(@RequestBody String filename) throws IOException, InterruptedException, ExecutionException, TimeoutException {
+	public String detectDocumentTextGcs(@RequestBody InputRequest apiRequest) throws IOException, InterruptedException, ExecutionException, TimeoutException {
 		
-String gcsPath = "gs://trailblazer_images/".concat(filename);
+String gcsPath = "gs://trailblazer_images/".concat(apiRequest.getFileName());
 String gcsDestinationPath = "gs://trailblazer_images/";
 
 //		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Sahil Aggarwal\\Desktop\\textDetector\\textDetector\\src\\main\\resources\\My First Project-5fcc280ffe7a.json"))
